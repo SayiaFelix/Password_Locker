@@ -1,5 +1,9 @@
 import unittest                             # Importing the unittest module
+import pyperclip                            # Importing the pyperclip module
 from password_locker import User            # Importing the User class from passwordlocker file
+from password_locker import Credential      # Importing the User class from passwordlocker file
+
+
 
 class TestUser(unittest.TestCase):
     '''
@@ -44,7 +48,6 @@ class TestUser(unittest.TestCase):
             self.new_user.save_user()
             test_user = User("Rensia","23455")           # new contact
             test_user.save_user()
-
             self.new_user.delete_user()                   # Deleting a user object
             self.assertEqual(len(User.user_list),1)
 
@@ -68,6 +71,17 @@ class TestUser(unittest.TestCase):
         self.assertEqual(User.display_user(),User.user_list)
 
     
+    def test_copy_password(self):
+        '''
+        Test to confirm that we are copying the password from the user imput
+        '''
+        self.new_user.save_user()
+        User.copy_password("23455")
+        self.assertEqual(self.new_user.password,pyperclip.paste())
+
+
+
+
 
 
 
