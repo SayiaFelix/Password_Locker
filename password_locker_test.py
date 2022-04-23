@@ -16,8 +16,38 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.new_user.password,"12345678")  
     
     def test_save_user(self):                      #To check if the user detatils has been saved correctly
-        self.new_user.save_user()              #For saving the user input
+        self.new_user.save_user()                  #For saving the user input
         self.assertEqual(len(User.user_list),1)
+
+
+    def tearDown(self):
+            '''
+            tearDown method to clean up each test case after has run.
+            '''
+            User.user_list = []
+
+
+
+    def test_save_multiple_users(self):
+        '''
+        To save multiple users in our list
+        '''  
+        self.new_user.save_user()
+        test_user=User("Rensia","23455")
+        test_user.save_user()
+        self.assertEqual(len(User.user_list),2)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__=="__main__":
