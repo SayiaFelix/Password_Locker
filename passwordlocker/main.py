@@ -1,11 +1,7 @@
 #!/usr/bin/env python3.9
 
-from ast import While
 from random import randint
 import string
-from tkinter.tix import Select
-
-from cupshelpers import Printer
 from password_locker import User     #Importing user from password Locker file
 from password_locker import Credentials   #Importing Credentials class from Password Locker file
 
@@ -19,15 +15,15 @@ def save_user(User):
 def delete_user(User):
     User.delete_user()
 
-def find_by_username(username):
-    return User.find_by_username(username)
+def find_user(number):
+    return User.find_by_username(number)
 
 def display_user() :
     return User.display_user()
 
 
-def create_account( accountusername,accountpassword):     #Creating instances for user Credentials
-    new_account = Credentials(accountusername,accountpassword)
+def create_account( accountusername,accountname,accountpassword):     #Creating instances for user Credentials
+    new_account = Credentials(accountusername,accountname,accountpassword)
     return new_account
     
 def save_account(Credentials):
@@ -36,7 +32,7 @@ def save_account(Credentials):
 def delete_account(Credentials):
     Credentials.delete_account()
 
-def find_by_username(number):
+def find_account(number):
     return Credentials.find_by_username(number)
 
 def display_account():
@@ -47,60 +43,50 @@ def display_account():
 def main():
     while True:
         print("\n")
-        name = input("Enter Your Name: ")
-        print(f"Hello {name}, Welcome to Sir Felix Password Hub.")
+        
+        print(f"Welcome to Sir Felix Password Hub.")
         print("\n")
-        print("Use 'na' to create New Account if you dont have an existing account: \n or 'lg' to login to your existing account: \n 'ex' to exit.")
-        print("\n")
+        print("Use 'na' to create New Account if you dont have an existing account or 'lg' to login to your existing account and 'ex' to exit. \n NB: use lower case characters:::")
         print("**********************************************************")
-        print("\n")
-
-
-        choice = input().lower
+        choice = input()
         if choice =="na":
             print("\n")
             print("Create New Account:")
-            print("-------------------------------------------------------")
+            print("--------------------------------------------------------------------------")
             print("\n")
             print("Enter Your Name: ")
             Username= input()
-            print("\n")
             print("Enter Your Password: ")
             password= input()
-
             save_user(create_user(Username,password))
             print("\n")
-            print("CONGRADULATION!!!!! Your acount was successfully Created. \n Here are your account details:")
-            print("----------------------------------------------------------")
-            print("\n")
+            print("CONGRADULATION!!!!! \n Your acount was successfully Created. \n Here are your account details:")
+            print("--------------------------------------------------------------------------")
             print(f"Name: {Username} \n Password:{password}" )
             print("\n")
             print("Use this Details to login in Your Account:")
-            print("\n")
-            print("\n")
-
+           
+        
         elif choice == "lg":
             print("Login in to Your Existing Account at Sir Felix Hub:")
-            print("-------------------------------------------------------------")
-            print("\n")
+            print("------------------------------------------------------------------------")
             print("Enter Your Username:")
-            loginusername= input()
+            loginUsername = input()
             print("Enter Your Password:")
-            loginpassword= input()
-
-            if find_by_username(loginpassword):
+            loginPassword = input()
+            if find_user(loginPassword):
                 print("\n")
                 print("You can create Multiple Accounts(AC) and check there status (CS):")
                 print("------------------------------------------------------------")
                 print("\n")
-                print("Select 'AC' or 'CS' :")
+                print("Select 'AC' or 'CS' : \n NB: Use Upper Case Characters ::")
 
-                option = input().upper
+                option = input()
                 print("\n")
                 if option == "AC":
                     print("Add Your Account::")
                     print("-------------------------------------------------------")
-                    accountusername = loginusername
+                    accountusername = loginUsername
                     print("\n")
                     print("Account Name:")
                     accountname =input()
@@ -129,7 +115,7 @@ def main():
                     print(f"Username: {accountusername} \n Accountname: {accountname} \n Password: {accountpassword}")
 
                 elif option=="CS":
-                    if find_by_username(accountusername):
+                    if find_account(accountusername):
                         print("\n")
                         print("Here is the List of your Created Accounts::")
                         print("-------------------------------------------------------")

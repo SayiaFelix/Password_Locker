@@ -61,12 +61,13 @@ class Credentials:
     '''    
     user_account=[]                             #Empty user list to store/save our username and password
     
-    def __init__(self, accountusername, accountpassword):
+    def __init__(self, accountusername,accountname, accountpassword):
 
         '''
         Function for intantiating the user input for our object
         '''
         self.accountusername= accountusername
+        self.accountname = accountname
         self.accountpassword= accountpassword
 
 
@@ -83,12 +84,12 @@ class Credentials:
         Credentials.user_account.remove(self)
 
     @classmethod
-    def find_by_username(cls,accountusername):
+    def find_by_username(cls,number):
             '''
             Method that takes in a username and returns a user input that matches that username.
             '''
             for account in cls.user_account:
-                if account.accountusername == accountusername:
+                if account.accountusername == number:
                     return account
 
     @classmethod
