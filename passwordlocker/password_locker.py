@@ -38,3 +38,11 @@ class User:
         for user in cls.user_list:
             if user.username == username:
                 return user
+
+    
+    @classmethod
+    def display_user(cls):
+        '''
+        method that returns the user imput list
+        '''
+        return cls.user_list
