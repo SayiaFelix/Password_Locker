@@ -46,6 +46,36 @@ def main():
         print(f"Hello {name}, Welcome to Sir Felix Password Hub.")
         print("\n")
         print("Use 'na' to create New Account if you dont have an existing account: \n or 'lg' to login to your existing account:")
+        print("\n")
+        print("**********************************************")
+        print("\n")
+
+
+        choice = input()
+        if choice =="na":
+            print("\n")
+            print("Create New Account:")
+            print("------------------------------------------")
+            print("\n")
+            print("Enter Your Name: ")
+            Username= input()
+            print("\n")
+            print("Enter Your Password: ")
+            password= input()
+
+            save_user(create_user(Username,password))
+            print("\n")
+            print("CONGRADULATION!!!!! Your acount was successfully Created. \n Here are your account details:")
+            print("---------------------------------------------")
+            print("\n")
+            print(f"Name: {Username} \n Password:{password}" )
+            print("\n")
+            print("Use this Details to login in Your Account:")
+            print("\n")
+            print("\n")
+
+        elif choice == "lg":
+            print()
 
 
 
