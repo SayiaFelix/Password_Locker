@@ -1,3 +1,6 @@
+#!/usr/bin/env python3.9
+
+from ast import While
 from password_locker import User     #Importing user from password Locker file
 from password_locker import Credentials   #Importing Credentials class from Password Locker file
 
@@ -33,3 +36,20 @@ def find_by_username(accountusername):
 
 def display_account():
     return Credentials.display_account()   
+
+
+
+def main():
+    while True:
+        print("\n")
+        name = input("Enter Your Name: ")
+        print(f"Hello {name}, Welcome to Sir Felix Password Hub.")
+        print("\n")
+        print("Use 'na' to create New Account if you dont have an existing account: \n or 'lg' to login to your existing account:")
+
+
+
+
+if __name__ == '__main__':
+
+    main()
