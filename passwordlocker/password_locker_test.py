@@ -1,7 +1,7 @@
 import unittest                             # Importing the unittest module
 import pyperclip                            # Importing the pyperclip module
 from password_locker import User            # Importing the User class from passwordlocker file
-from password_locker import Credential      # Importing the User class from passwordlocker file
+#from password_locker import Credentials     # Importing the User class from passwordlocker file
 
 
 
@@ -29,8 +29,6 @@ class TestUser(unittest.TestCase):
             tearDown method to clean up each test case after has run.
             '''
             User.user_list = []
-
-
 
     def test_save_multiple_users(self):
         '''
@@ -78,11 +76,6 @@ class TestUser(unittest.TestCase):
         self.new_user.save_user()
         User.copy_password("23455")
         self.assertEqual(self.new_user.password,pyperclip.paste())
-
-
-
-
-
 
 
 if __name__=="__main__":

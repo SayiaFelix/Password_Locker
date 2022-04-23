@@ -5,7 +5,7 @@ class User:
     '''
     Class that generate User Intances.
     '''
-    user_list=[] #Empty user list to store/save our username and password
+    user_list=[]                              #Empty user list to store/save our username and password
     
     def __init__(self, username, password):
 
@@ -18,14 +18,14 @@ class User:
 
     def save_user(self):     
         '''
-        Function for saving username and password
+        Function for saving username and password on the list
         '''
         User.user_list.append(self)
 
     
     def delete_user(self):
         '''
-        Function for delete user input
+        Function for delete user input from user list
         '''
         User.user_list.remove(self)
 
@@ -45,40 +45,62 @@ class User:
         method that returns the user imput list
         '''
         return cls.user_list
+        
     @classmethod
-    def copy_password(cls,password):
-        password_found = Credential.find_by_username(password)
+    def copy_password(cls,username):
+        password_found = User.find_by_username(username)
         pyperclip.copy(password_found.password)
 
 #End of class User
 
 #Start of class Credential
 
-class Credential:
+class Credentials:
     '''
-    Class that generate copy user credentials.
+    Class that generate user credentials.
     '''    
-    user_list=[]                             #Empty user list to store/save our username and password
+    user_account=[]                             #Empty user list to store/save our username and password
     
-    def __init__(self, username, password):
+    def __init__(self, accountusername, accountpassword):
 
         '''
-        Function for intantiating the user input for copying
+        Function for intantiating the user input for our object
         '''
-        self.username= username
-        self.password= password
+        self.accountusername= accountusername
+        self.accountpassword= accountpassword
 
+
+    def save_account(self):     
+        '''
+        Function for saving user account
+        '''
+        Credentials.user_account.append(self)
+
+    def delete_account(self):
+        '''
+        Function for delete credential input from user list
+        '''
+        Credentials.user_account.remove(self)
 
     @classmethod
-    def find_by_username(cls,username):
+    def find_by_username(cls,accountusername):
             '''
             Method that takes in a username and returns a user input that matches that username.
             '''
-            for user in cls.user_list:
-                if user.username == username:
-                    return user
+            for account in cls.user_account:
+                if account.accountusername == accountusername:
+                    return account
 
     @classmethod
-    def copy_password(cls,password):
-        password_found = Credential.find_by_username(password)
+    def display_account(cls):
+        '''
+        method that returns the account imput list
+        '''
+        return cls.user_account
+
+
+    @classmethod
+    def copy_password(cls,accountpassword):
+        password_found = Credentials.find_by_username(accountpassword)
         pyperclip.copy(password_found.password)
+
