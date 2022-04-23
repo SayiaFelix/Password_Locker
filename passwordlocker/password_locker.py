@@ -45,11 +45,22 @@ class User:
         method that returns the user imput list
         '''
         return cls.user_list
-        
+
     @classmethod
-    def copy_password(cls,username):
-        password_found = User.find_by_username(username)
-        pyperclip.copy(password_found.password)
+    def user_exist(cls,number):
+        '''
+        Method that checks if a contact exists from the user list.
+        '''
+        for user in cls.user_list:
+            if user.password == number:
+                    return True
+
+        return False
+        
+    # @classmethod
+    # def copy_password(cls,username):
+    #     password_found = User.find_by_username(username)
+    #     pyperclip.copy(password_found.password)
 
 #End of class User
 
@@ -100,8 +111,8 @@ class Credentials:
         return cls.user_account
 
 
-    @classmethod
-    def copy_password(cls,accountpassword):
-        password_found = Credentials.find_by_username(accountpassword)
-        pyperclip.copy(password_found.password)
+    # @classmethod
+    # def copy_password(cls,accountpassword):
+    #     password_found = Credentials.find_by_username(accountpassword)
+    #     pyperclip.copy(password_found.password)
 

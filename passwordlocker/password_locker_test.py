@@ -66,15 +66,28 @@ class TestUser(unittest.TestCase):
         method that returns a list of all users input saved
         '''
         self.assertEqual(User.display_user(),User.user_list)
-
     
-    def test_copy_password(self):
+
+    def test_user_exists(self):
         '''
-        Test to confirm that we are copying the password from the user imput
+        test to check if we can return a Boolean  if we cannot find the contact.
         '''
+
         self.new_user.save_user()
-        User.copy_password("23455")
-        self.assertEqual(self.new_user.password,pyperclip.paste())
+        test_user = User("Rensia","23455") # new contact
+        test_user.save_user()
+
+        user_exists = User.user_exist("23455")
+
+        self.assertTrue(user_exists)
+    
+    # def test_copy_password(self):
+    #     '''
+    #     Test to confirm that we are copying the password from the user imput
+    #     '''
+    #     self.new_user.save_user()
+    #     User.copy_password("23455")
+    #     self.assertEqual(self.new_user.password,pyperclip.paste())
 
 
 if __name__=="__main__":

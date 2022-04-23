@@ -13,10 +13,16 @@ def save_user(User):
     User.save_user()
 
 def delete_user(User):
-    User.delete_user()
+     User.delete_user()
 
 def find_user(number):
     return User.find_by_username(number)
+
+def check_existing_user(number):
+    '''
+    Function that check if a user exists with that number and return a Boolean
+    '''
+    return User.user_exist(number)
 
 def display_user() :
     return User.display_user()
@@ -46,7 +52,7 @@ def main():
         
         print(f"Welcome to Sir Felix Password Hub.")
         print("\n")
-        print("Use 'na' to create New Account if you dont have an existing account or 'lg' to login to your existing account and 'ex' to exit. \n NB: use lower case characters:::")
+        print("Use 'na' to create New Account if you dont have an existing account:: 'dc' to Display Your Details:: 'fc' to find search for existing user account::: 'lg' to login to your existing account and 'ex' to exit. \n NB: use lower case characters:::")
         print("**********************************************************")
         choice = input()
         if choice =="na":
@@ -66,7 +72,46 @@ def main():
             print("\n")
             print("Use this Details to login in Your Account:")
            
-        
+        elif choice == 'dc':
+
+                            if display_user():
+                                    print("Here is a list of all your contacts")
+                                    print('\n')
+
+                                    for user in display_user():
+                                            print(f" Name::{user.username} \n Password:: {user.password}")
+
+                                    print('\n')
+                            else:
+                                    print('\n')
+                                    print("You dont seem to have any contacts saved yet")
+                                    print('\n')
+        elif choice == 'fc':
+
+                            print("Enter the name you want to search for")
+
+                            search_number = input()
+                            if check_existing_user(search_number):
+                                    search_user = find_user(search_number)
+                                    print(f"{search_user.password}")
+                                    print('-' * 20)
+
+                                    print(f"Password::: {search_user.username}")
+                                    print("from your contact list? If yes, type y, If no, type, n")
+
+                                    decisionInput = input().lower()
+
+                                    if decisionInput == 'y':
+                                     delete_user(search_user)
+                                     print(f"You have successfully removed {search_user.username} {search_user.password} from your list.")
+                                     print("\n")
+                                    elif decisionInput == 'n':
+                                     print("User still exist")
+                                    else:
+                                     print("Sorry I didn\'t quite get that")
+                            else:
+                                    print("That User does not exist")
+       
         elif choice == "lg":
             print("Login in to Your Existing Account at Sir Felix Hub:")
             print("------------------------------------------------------------------------")
@@ -145,5 +190,4 @@ def main():
 
 
 if __name__ == '__main__':
-
-    main()
+          main()
