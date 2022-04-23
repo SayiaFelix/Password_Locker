@@ -1,7 +1,6 @@
 import unittest                             # Importing the unittest module
 import pyperclip                            # Importing the pyperclip module
 from password_locker import User            # Importing the User class from passwordlocker file
-#from password_locker import Credentials     # Importing the User class from passwordlocker file
 
 
 
