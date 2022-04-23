@@ -50,7 +50,7 @@ def main():
         name = input("Enter Your Name: ")
         print(f"Hello {name}, Welcome to Sir Felix Password Hub.")
         print("\n")
-        print("Use 'na' to create New Account if you dont have an existing account: \n or 'lg' to login to your existing account:")
+        print("Use 'na' to create New Account if you dont have an existing account: \n or 'lg' to login to your existing account: \n 'ex' to exit.")
         print("\n")
         print("**********************************************************")
         print("\n")
@@ -122,11 +122,40 @@ def main():
                         print("Kindly, Enter a VALID Choice!!!!")
 
                     save_account(create_account(accountusername,accountname, accountpassword))
+                    print("\n")
+                    print("CONGRATULATIONS!!!!!!!!!!! Here are your Account Details.")
+                    print("-------------------------------------------------------")
+                    print("\n")
+                    print(f"Username: {accountusername} \n Accountname: {accountname} \n Password: {accountpassword}")
 
+                elif option=="CS":
+                    if find_by_username(accountusername):
+                        print("\n")
+                        print("Here is the List of your Created Accounts::")
+                        print("-------------------------------------------------------")
+                        for User in display_account():
+                            print(f"Account:: {User.accountname} \n Password:: {User.accountpassword}")
+                            print("\n")
+                            print("\n")
+                    else:
+                        print("Your Credentials were INVALID!!!!")
 
+                else:   
+                    print("FAILED!!!!!!!! Please Try Again Later.")   
+                    print("\n")
+            
+            else:
+                print("FAILED!!!!!  Your information were incorrect,try again. \n THANK YOU")
+                print("\n")
+        
+        elif choice == "ex":
+             print("Hope You enjoyed. Thank You!!!!")
+             print("\n")
+             break
 
-
-
+        else:
+            print("Kindly, Choose a valid option and try again!!")
+            print("\n")
 
 
 if __name__ == '__main__':
