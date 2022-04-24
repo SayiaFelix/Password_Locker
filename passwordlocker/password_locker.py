@@ -1,5 +1,5 @@
 from requests import delete
-import pyperclip                #Importing pyperclip
+
 
 class User:
     '''
