@@ -48,7 +48,7 @@ class TestUser(unittest.TestCase):
             self.new_user.delete_user()                   # Deleting a user object
             self.assertEqual(len(User.user_list),1)
 
-    def test_find_user_by_username(self):
+    def test_find_user_by_number(self):
         '''
         test to check if we can find a user by username and display information
         '''
@@ -57,8 +57,8 @@ class TestUser(unittest.TestCase):
         test_user = User("Rensia","23455")               # new contact
         test_user.save_user()
 
-        found_user = User.find_by_username("Rensia")
-        self.assertEqual(found_user.password,test_user.password)
+        found_user = User.find_by_number("23455")
+        self.assertEqual(found_user.username,test_user.username)
 
 
     def test_display_all_users(self):
@@ -81,13 +81,6 @@ class TestUser(unittest.TestCase):
 
         self.assertTrue(user_exists)
     
-    # def test_copy_password(self):
-    #     '''
-    #     Test to confirm that we are copying the password from the user imput
-    #     '''
-    #     self.new_user.save_user()
-    #     User.copy_password("23455")
-    #     self.assertEqual(self.new_user.password,pyperclip.paste())
 
 
 if __name__=="__main__":

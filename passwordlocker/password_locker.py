@@ -30,12 +30,12 @@ class User:
         User.user_list.remove(self)
 
     @classmethod
-    def find_by_username(cls,username):
+    def find_by_number(cls,number):
             '''
             Method that takes in a username and returns a user input that matches that username.
             '''
             for user in cls.user_list:
-                if user.username == username:
+                if user.password == number:
                     return user
    
     
@@ -52,10 +52,10 @@ class User:
         Method that checks if a contact exists from the user list.
         '''
         for user in cls.user_list:
-            if user.password == number:
+            if user.username == number:
                     return True
 
-        return False
+        return True
         
     # @classmethod
     # def copy_password(cls,username):
@@ -95,7 +95,7 @@ class Credentials:
         Credentials.user_account.remove(self)
 
     @classmethod
-    def find_by_username(cls,number):
+    def find_by_number(cls,number):
             '''
             Method that takes in a username and returns a user input that matches that username.
             '''
@@ -109,10 +109,4 @@ class Credentials:
         method that returns the account imput list
         '''
         return cls.user_account
-
-
-    # @classmethod
-    # def copy_password(cls,accountpassword):
-    #     password_found = Credentials.find_by_username(accountpassword)
-    #     pyperclip.copy(password_found.password)
 

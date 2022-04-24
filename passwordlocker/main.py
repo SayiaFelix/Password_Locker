@@ -16,7 +16,7 @@ def delete_user(User):
      User.delete_user()
 
 def find_user(number):
-    return User.find_by_username(number)
+    return User.find_by_number(number)
 
 def check_existing_user(number):
     '''
@@ -32,14 +32,14 @@ def create_account( accountusername,accountname,accountpassword):     #Creating 
     new_account = Credentials(accountusername,accountname,accountpassword)
     return new_account
     
-def save_account(Credentials):
-    Credentials.save.account()
+def save_account(User):
+    User.save_account()
 
-def delete_account(Credentials):
-    Credentials.delete_account()
+def delete_account(User):
+    User.delete_account()
 
 def find_account(number):
-    return Credentials.find_by_username(number)
+    return Credentials.find_by_number(number)
 
 def display_account():
     return Credentials.display_account()   
@@ -52,9 +52,9 @@ def main():
         
         print(f"Welcome to Sir Felix Password Hub.")
         print("\n")
-        print("Use 'na' to create New Account if you dont have an existing account:: 'dc' to Display Your Details:: 'fc' to find search for existing user account::: 'lg' to login to your existing account and 'ex' to exit. \n NB: use lower case characters:::")
+        print("Use 'na' to create New Account if you dont have an existing account:: 'dc' to Display Your Details:: 'fc' to find search for existing user account::: 'lg' to login to your existing account and 'ex' to exit.")
         print("**********************************************************")
-        choice = input()
+        choice = input().lower()
         if choice =="na":
             print("\n")
             print("Create New Account:")
@@ -74,43 +74,41 @@ def main():
            
         elif choice == 'dc':
 
-                            if display_user():
-                                    print("Here is a list of all your contacts")
-                                    print('\n')
+            if display_user():
+             print("Here is a list of all your contacts")
+             print('\n')
 
-                                    for user in display_user():
-                                            print(f" Name::{user.username} \n Password:: {user.password}")
+             for user in display_user():
+              print(f" Name::{user.username} \n Password:: {user.password}")
 
-                                    print('\n')
-                            else:
-                                    print('\n')
-                                    print("You dont seem to have any contacts saved yet")
-                                    print('\n')
+              print('\n')
+            else:
+             print('\n')
+             print("You dont seem to have any contacts saved yet")
+             print('\n')
         elif choice == 'fc':
+             print("Enter the name you want to search for")
 
-                            print("Enter the name you want to search for")
+             search_number = input()
+             if check_existing_user(search_number):
+              search_user = find_user(search_number)
+              print(f"{search_user.password}")
+              print('-' * 20)
+              print(f"Password::: {search_user.username}")
+              print("From your User list? Select 'y' for yes, Select 'n' for no")
 
-                            search_number = input()
-                            if check_existing_user(search_number):
-                                    search_user = find_user(search_number)
-                                    print(f"{search_user.password}")
-                                    print('-' * 20)
+              decisionInput = input().lower()
 
-                                    print(f"Password::: {search_user.username}")
-                                    print("from your contact list? If yes, type y, If no, type, n")
-
-                                    decisionInput = input().lower()
-
-                                    if decisionInput == 'y':
-                                     delete_user(search_user)
-                                     print(f"You have successfully removed {search_user.username} {search_user.password} from your list.")
-                                     print("\n")
-                                    elif decisionInput == 'n':
-                                     print("User still exist")
-                                    else:
-                                     print("Sorry I didn\'t quite get that")
-                            else:
-                                    print("That User does not exist")
+              if decisionInput == 'y':
+                 delete_user(search_user)
+                 print(f"You have successfully removed {search_user.username} {search_user.password} from your list.")
+                 print("\n")
+              elif decisionInput == 'n':
+                 print("User still exist")
+              else:
+                 print("Sorry I didn't get that")
+             else:
+                 print("That User does not exist")
        
         elif choice == "lg":
             print("Login in to Your Existing Account at Sir Felix Hub:")
@@ -126,7 +124,7 @@ def main():
                 print("\n")
                 print("Select 'AC' or 'CS' : \n NB: Use Upper Case Characters ::")
 
-                option = input()
+                option = input().upper()
                 print("\n")
                 if option == "AC":
                     print("Add Your Account::")
@@ -139,10 +137,10 @@ def main():
                     print("To Use Automated Password: SELECT 'AP' or Create your Own Password: SELECT 'CP'.")
                     print("-------------------------------------------------------")
                     print("\n")
-                    decision = input().upper
+                    decision = input().upper()
                     if decision == "AP":
                         characterspassword = string.ascii_letters + string.digits + string.ascii_lowercase
-                        accountpassword ="".join(choice(characterspassword)for x in range(randint(8,16)))
+                        accountpassword ="".join(choice(characterspassword)for x in range(randint(6,16)))
                         print(f"password: {accountpassword}")
 
                     elif decision == "CP":
@@ -180,7 +178,7 @@ def main():
                 print("\n")
         
         elif choice == "ex":
-             print("Hope You enjoyed. Thank You!!!!")
+             print("Hope You enjoyed. Thank You!!!! \n GoodBye!!")
              print("\n")
              break
 
