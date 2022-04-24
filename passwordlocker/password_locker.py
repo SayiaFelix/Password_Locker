@@ -57,15 +57,9 @@ class User:
 
         return True
         
-    # @classmethod
-    # def copy_password(cls,username):
-    #     password_found = User.find_by_username(username)
-    #     pyperclip.copy(password_found.password)
-
 #End of class User
 
 #Start of class Credential
-
 class Credentials:
     '''
     Class that generate user credentials.

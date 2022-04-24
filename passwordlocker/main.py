@@ -81,7 +81,7 @@ def main():
     while True:
         print("\n")
         print(f"Welcome to Sir Felix Password Hub.")
-        print("Use the following short codes to navigate through the application::: \n \n 'na' to create New Account if you dont have an existing account::  \n 'dc' to Display Your Details:: \n 'fc' to search for existing user account and delete it if you want::: \n 'lg' to login to your existing account::: \n 'ex' to exit:::")
+        print("Use the following short codes to navigate through the application::: \n \n 'na' to create New Account if you dont have an existing account::  \n 'dc' to Display Your Details:: \n 'sc' to search for existing user account and delete it if you want::: \n 'lg' to login to your existing account::: \n 'ex' to exit:::")
         print("************************************************************************************")
         choice = input().lower()
         if choice =="na":
@@ -96,16 +96,14 @@ def main():
             save_user(create_user(Username,password))
             print("\n")
             print("CONGRADULATION!!!!! \n Your acount was successfully Created, here are your account details:")
-            print("---------------------------------------------------------------------------------")
+            print("---------------------------------------------------------------------------")
             print(f" Username:: {Username} \n Password:: {password}" )
             print("\n")
             print("Use the above details to LOGIN in Your Account:::")
             print("---------------------------------------------------")
         elif choice == 'dc':
             if display_user():
-             print('\n')
              print("Here is a list of all your contacts")
-            
              for user in display_user():
               print(f" Username:: {user.username} \n Password:: {user.password}")
               print('\n')
@@ -113,7 +111,7 @@ def main():
              print('\n')
              print("You dont have any account saved yet")
              print('\n')
-        elif choice == 'fc':
+        elif choice == 'sc':
              print("Enter the PASSWORD for the account you want to search for SECURITY reasons!!!!")
              number = input()
              if check_existing_user(number):
@@ -122,12 +120,12 @@ def main():
               print(f"Username::: {search_user.username}")
               print(f"Password::: {search_user.password}")
               print("\n")
-              print(f"Do you want to delete this account from your account List ?????? \n \n Username::: {search_user.username} \n Password::: {search_user.password} \n ")
-              print("if YES select 'y' and 'n' for NO :::::")
+              print(f"Do you want to delete this account from your account List?????? \n ")
+              print("If YES select 'y' and 'n' for NO :::::")
               decisionInput = input().lower()
               if decisionInput == 'y':
                  delete_user(search_user)
-                 print(f"You have successfully deleted {search_user.username} {search_user.password} from your account list.")
+                 print(f"You have successfully deleted the account below from your account list. \n Username::: {search_user.username}. Password::: {search_user.password} ")
                  print("\n")
               elif decisionInput == 'n':
                  print("You have not deleted any account, try again later::::")
@@ -135,7 +133,6 @@ def main():
                  print("Sorry I didn't get that")
              else:
                  print("That User does not exist")
-       
         elif choice == "lg":
             print("Login in to Your Existing Account at Sir Felix Hub:")
             print("----------------------------------------------------")
