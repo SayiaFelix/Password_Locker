@@ -6,16 +6,29 @@ from password_locker import User     #Importing user from password Locker file
 from password_locker import Credentials   #Importing Credentials class from Password Locker file
 
 def create_user( username,password):     #Creating instances for user input
+    '''
+    create a new user
+    '''
     new_user= User(username,password)
     return new_user
 
 def save_user(User):
+    '''
+    Function to save users
+    '''
     User.save_user()
 
 def delete_user(User):
+     '''
+     Function to delete user
+     '''
      User.delete_user()
 
 def find_user(number):
+
+    '''
+    Function to find users
+    '''
     return User.find_by_number(number)
 
 def check_existing_user(number):
@@ -25,6 +38,9 @@ def check_existing_user(number):
     return User.user_exist(number)
 
 def display_user() :
+    '''
+    Function to display users
+    '''
     return User.display_user()
 
 
@@ -33,32 +49,46 @@ def create_account( accountusername,accountname,accountpassword):     #Creating 
     return new_account
     
 def save_account(User):
+    '''
+    Function to save Credentials
+    '''
     User.save_account()
 
 def delete_account(User):
+    '''
+    Function to delete credentials
+    '''
     User.delete_account()
 
 def find_account(number):
+    '''
+    Function to find Credentials
+    '''
     return Credentials.find_by_number(number)
 
 def display_account():
+    '''
+    Function to display Credentials
+    '''
     return Credentials.display_account()   
 
 
 
 def main():
+    '''
+    Main Function
+    '''
     while True:
         print("\n")
-        
         print(f"Welcome to Sir Felix Password Hub.")
         print("\n")
         print("Use 'na' to create New Account if you dont have an existing account:: 'dc' to Display Your Details:: 'fc' to find search for existing user account::: 'lg' to login to your existing account and 'ex' to exit.")
-        print("**********************************************************")
+        print("**************************************************************************************************************************************************")
         choice = input().lower()
         if choice =="na":
             print("\n")
             print("Create New Account:")
-            print("--------------------------------------------------------------------------")
+            print("--------------------")
             print("\n")
             print("Enter Your Name: ")
             Username= input()
@@ -67,20 +97,18 @@ def main():
             save_user(create_user(Username,password))
             print("\n")
             print("CONGRADULATION!!!!! \n Your acount was successfully Created. \n Here are your account details:")
-            print("--------------------------------------------------------------------------")
+            print("------------------------------------------------------------------------------------------------")
             print(f"Name: {Username} \n Password:{password}" )
             print("\n")
             print("Use this Details to login in Your Account:")
            
         elif choice == 'dc':
-
             if display_user():
              print("Here is a list of all your contacts")
              print('\n')
 
              for user in display_user():
               print(f" Name::{user.username} \n Password:: {user.password}")
-
               print('\n')
             else:
              print('\n')
@@ -88,7 +116,6 @@ def main():
              print('\n')
         elif choice == 'fc':
              print("Enter the name you want to search for")
-
              search_number = input()
              if check_existing_user(search_number):
               search_user = find_user(search_number)
@@ -98,7 +125,6 @@ def main():
               print("From your User list? Select 'y' for yes, Select 'n' for no")
 
               decisionInput = input().lower()
-
               if decisionInput == 'y':
                  delete_user(search_user)
                  print(f"You have successfully removed {search_user.username} {search_user.password} from your list.")
@@ -112,7 +138,7 @@ def main():
        
         elif choice == "lg":
             print("Login in to Your Existing Account at Sir Felix Hub:")
-            print("------------------------------------------------------------------------")
+            print("----------------------------------------------------")
             print("Enter Your Username:")
             loginUsername = input()
             print("Enter Your Password:")
@@ -120,40 +146,37 @@ def main():
             if find_user(loginPassword):
                 print("\n")
                 print("You can create Multiple Accounts(AC) and check there status (CS):")
-                print("------------------------------------------------------------")
+                print("-----------------------------------------------------------------")
                 print("\n")
                 print("Select 'AC' or 'CS' : \n NB: Use Upper Case Characters ::")
-
                 option = input().upper()
                 print("\n")
                 if option == "AC":
                     print("Add Your Account::")
-                    print("-------------------------------------------------------")
+                    print("-------------------")
                     accountusername = loginUsername
                     print("\n")
                     print("Account Name:")
                     accountname =input()
                     print("\n")
                     print("To Use Automated Password: SELECT 'AP' or Create your Own Password: SELECT 'CP'.")
-                    print("-------------------------------------------------------")
+                    print("---------------------------------------------------------------------------------")
                     print("\n")
                     decision = input().upper()
                     if decision == "AP":
                         characterspassword = string.ascii_letters + string.digits + string.ascii_lowercase
-                        accountpassword ="".join(choice(characterspassword)for x in range(randint(6,16)))
+                        accountpassword =" ".join(choice(characterspassword)for x in range(randint(6,16)))
                         print(f"password: {accountpassword}")
 
                     elif decision == "CP":
                         print("Enter Your Password::")
                         accountpassword = input()
-                    
                     else:
                         print("Kindly, Enter a VALID Choice!!!!")
-
                     save_account(create_account(accountusername,accountname, accountpassword))
                     print("\n")
                     print("CONGRATULATIONS!!!!!!!!!!! Here are your Account Details.")
-                    print("-------------------------------------------------------")
+                    print("----------------------------------------------------------")
                     print("\n")
                     print(f"Username: {accountusername} \n Accountname: {accountname} \n Password: {accountpassword}")
 
@@ -161,7 +184,7 @@ def main():
                     if find_account(accountusername):
                         print("\n")
                         print("Here is the List of your Created Accounts::")
-                        print("-------------------------------------------------------")
+                        print("---------------------------------------------")
                         for User in display_account():
                             print(f"Account:: {User.accountname} \n Password:: {User.accountpassword}")
                             print("\n")
@@ -185,7 +208,6 @@ def main():
         else:
             print("Kindly, Choose a valid option and try again!!")
             print("\n")
-
 
 if __name__ == '__main__':
           main()
