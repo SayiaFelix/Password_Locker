@@ -82,7 +82,7 @@ def main():
         print("\n")
         print(f"Welcome to Sir Felix Password Hub.")
         print("Use the following short codes to navigate through the application::: \n \n 'na' to create New Account if you dont have an existing account::  \n 'dc' to Display Your Details:: \n 'sc' to search for existing user account and delete it if you want::: \n 'lg' to login to your existing account::: \n 'ex' to exit:::")
-        print("************************************************************************************")
+        print("*************************************************************************")
         choice = input().lower()
         if choice =="na":
             print("\n")
@@ -96,7 +96,7 @@ def main():
             save_user(create_user(Username,password))
             print("\n")
             print("CONGRADULATION!!!!! \n Your acount was successfully Created, here are your account details:")
-            print("---------------------------------------------------------------------------")
+            print("----------------------------------------------------------------------")
             print(f" Username:: {Username} \n Password:: {password}" )
             print("\n")
             print("Use the above details to LOGIN in Your Account:::")
@@ -160,7 +160,7 @@ def main():
                     print("\n")
                     decision = input().upper()
                     if decision == "AP":
-                        characterspassword = string.ascii_letters + string.digits + string.ascii_lowercase
+                        characterspassword = string.ascii_letters + string.digits + string.ascii_lowercase + string.punctuation
                         accountpassword =" ".join(random.choice(characterspassword)for x in range(randint(8,16)))
                         print(f"password: {accountpassword}")
 
@@ -197,7 +197,7 @@ def main():
                 print("\n")
         
         elif choice == "ex":
-             print("Hope You enjoyed. Thank You!!!! \n GoodBye!!")
+             print(" Hope You enjoyed. Thank You!!!! \n GoodBye!!")
              print("\n")
              break
 
