@@ -28,7 +28,7 @@ then
 cd passwordlocker
 ```
 ```
-chmod +x run.py
+chmod +x main.py
 ```
 ```
 ./main.py
